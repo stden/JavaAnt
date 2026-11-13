@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Работа с условиями -->
+<!-- basedir="." - текущий каталог -->
+<project basedir="." name="javaant" default="main">
+    <dirname property="ant.lib.dir" file="${ant.core.lib}"/>
+
+    <!-- <taskdef resource="net/sf/antcontrib/antcontrib.properties">
+         <classpath>
+             <pathelement location="{$basedir}/lib/ant-contrib-0.3.jar"/>
+         </classpath>
+     </taskdef> -->
+
+    <!-- Определяем 2 переменные: a и b -->
+    <property name="a" value="2"/>
+    <property name="b" value="3"/>
+
+    <target name="default1">
+        <!--        <if>
+                    <not>
+                        <isset property="manifestfile"/>
+                    </not>
+                    <then>
+                        <property name="manifestfile" value="${basedir}/lib/ManifestFiles/ManifestSandbox.txt"/>
+                    </then>
+                </if> -->
+    </target>
+
+
+    <target name="default">
+        <antcall target="doSomethingElse">
+            <param name="param1" value="value"/>
+        </antcall>
+    </target>
+
+    <target name="doSomethingElse">
+        <echo message="param1=${param1}"/>
+    </target>
+
+    <target name="main" description="build all">
+        <echo message=""/>
+        <echo message="${ant.file}"/>
+        <echo message=" + steps to build all1"/>
+        <echo message="ant.lib.dir = ${ant.lib.dir}"/>
+    </target>
+</project>

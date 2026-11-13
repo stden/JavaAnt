@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="javaant" default="all">
+
+    <!-- Загрузка настроек из файла -->
+    <property file="javaant.properties"/>
+    <property file="my.properties"/>
+
+    <!-- Uncomment the following property if no tests compilation is needed -->
+    <!--
+    <property name="skip.tests" value="true"/>
+     -->
+
+    <!-- Отдельные свойства задаём -->
+    <!-- Compiler options -->
+    <property name="compiler.debug" value="on"/>
+    <property name="compiler.generate.no.warnings" value="off"/>
+    <property name="compiler.args" value=""/>
+    <property name="compiler.max.memory" value="700m"/>
+    <patternset id="ignored.files">
+        <exclude name="**/CVS/**"/>
+        <exclude name="**/SCCS/**"/>
+        <exclude name="**/RCS/**"/>
+        <exclude name="**/rcs/**"/>
+        <exclude name="**/.DS_Store/**"/>
+        <exclude name="**/.svn/**"/>
+        <exclude name="**/.pyc/**"/>
+        <exclude name="**/.pyo/**"/>
+        <exclude name="**/*.pyc/**"/>
+        <exclude name="**/*.pyo/**"/>
+        <exclude name="**/.git/**"/>
+        <exclude name="**/*.hprof/**"/>
+        <exclude name="**/_svn/**"/>
+        <exclude name="**/.hg/**"/>
+        <exclude name="**/*.lib/**"/>
+        <exclude name="**/*~/**"/>
+        <exclude name="**/__pycache__/**"/>
+        <exclude name="**/.bundle/**"/>
+        <exclude name="**/*.rbc/**"/>
+        <exclude name="**/*.orig/**"/>
+    </patternset>
+    <patternset id="library.patterns">
+        <include name="*.war"/>
+        <include name="*.ear"/>
+        <include name="*.apk"/>
+        <include name="*.zip"/>
+        <include name="*.swc"/>
+        <include name="*.ane"/>
+        <include name="*.egg"/>
+        <include name="*.jar"/>
+    </patternset>
+    <patternset id="compiler.resources">
+        <exclude name="**/?*.java"/>
+        <exclude name="**/?*.form"/>
+        <exclude name="**/?*.class"/>
+        <exclude name="**/?*.groovy"/>
+        <exclude name="**/?*.scala"/>
+        <exclude name="**/?*.flex"/>
+        <exclude name="**/?*.kt"/>
+        <exclude name="**/?*.clj"/>
+    </patternset>
+
+    <!-- JDK definitions -->
+    <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+    <path id="jdk.classpath.1.8">
+        <fileset dir="${jdk.home.1.8}">
+            <include name="jre/lib/charsets.jar"/>
+            <include name="jre/lib/deploy.jar"/>
+            <include name="jre/lib/javaws.jar"/>
+            <include name="jre/lib/jce.jar"/>
+            <include name="jre/lib/jfr.jar"/>
+            <include name="jre/lib/jfxswt.jar"/>
+            <include name="jre/lib/jsse.jar"/>
+            <include name="jre/lib/management-agent.jar"/>
+            <include name="jre/lib/plugin.jar"/>
+            <include name="jre/lib/resources.jar"/>
+            <include name="jre/lib/rt.jar"/>
+            <include name="jre/lib/ext/access-bridge-32.jar"/>
+            <include name="jre/lib/ext/cldrdata.jar"/>
+            <include name="jre/lib/ext/dnsns.jar"/>
+            <include name="jre/lib/ext/GlassImage.jar"/>
+            <include name="jre/lib/ext/GlassRobot.jar"/>
+            <include name="jre/lib/ext/jaccess.jar"/>
+            <include name="jre/lib/ext/jemmy.jar"/>
+            <include name="jre/lib/ext/jemmy3.jar"/>
+            <include name="jre/lib/ext/JemmyAWT.jar"/>
+            <include name="jre/lib/ext/JemmyAWTInput.jar"/>
+            <include name="jre/lib/ext/JemmyBrowser.jar"/>
+            <include name="jre/lib/ext/JemmyCore.jar"/>
+            <include name="jre/lib/ext/JemmyFX.jar"/>
+            <include name="jre/lib/ext/JemmyFXBrowser.jar"/>
+            <include name="jre/lib/ext/JemmyGNOME.jar"/>
+            <include name="jre/lib/ext/JemmyNative.jar"/>
+            <include name="jre/lib/ext/JemmyOSX.jar"/>
+            <include name="jre/lib/ext/JemmySupport.jar"/>
+            <include name="jre/lib/ext/JemmyWindows.jar"/>
+            <include name="jre/lib/ext/jfxrt.jar"/>
+            <include name="jre/lib/ext/localedata.jar"/>
+            <include name="jre/lib/ext/nashorn.jar"/>
+            <include name="jre/lib/ext/sunec.jar"/>
+            <include name="jre/lib/ext/sunjce_provider.jar"/>
+            <include name="jre/lib/ext/sunmscapi.jar"/>
+            <include name="jre/lib/ext/sunpkcs11.jar"/>
+            <include name="jre/lib/ext/unittestdriver.jar"/>
+            <include name="jre/lib/ext/zipfs.jar"/>
+        </fileset>
+    </path>
+
+    <property name="project.jdk.home" value="${jdk.home.1.8}"/>
+    <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
+    <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+
+    <!-- Application Server Libraries -->
+
+    <!-- Modules -->
+
+    <!-- Module JavaAnt -->
+    <dirname property="module.javaant.basedir" file="${ant.file}"/>
+
+    <property name="module.jdk.home.javaant" value="${project.jdk.home}"/>
+    <property name="module.jdk.bin.javaant" value="${project.jdk.bin}"/>
+    <property name="module.jdk.classpath.javaant" value="${project.jdk.classpath}"/>
+
+    <property name="compiler.args.javaant" value="-encoding UTF-8 -source 1.6 ${compiler.args}"/>
+
+    <property name="javaant.output.dir" value="${module.javaant.basedir}/dist"/>
+
+    <property name="javaant.testoutput.dir" value="${module.javaant.basedir}/out/test/JavaAnt"/>
+
+
+    <path id="javaant.module.production.classpath">
+        <path refid="${module.jdk.classpath.javaant}"/>
+    </path>
+
+    <path id="javaant.runtime.production.module.classpath">
+        <pathelement location="${javaant.output.dir}"/>
+    </path>
+
+    <path id="javaant.module.classpath">
+        <path refid="${module.jdk.classpath.javaant}"/>
+        <pathelement location="${javaant.output.dir}"/>
+    </path>
+
+    <path id="javaant.runtime.module.classpath">
+        <pathelement location="${javaant.testoutput.dir}"/>
+        <pathelement location="${javaant.output.dir}"/>
+    </path>
+
+
+    <patternset id="excluded.from.module.javaant">
+        <patternset refid="ignored.files"/>
+    </patternset>
+
+    <patternset id="excluded.from.compilation.javaant">
+        <patternset refid="excluded.from.module.javaant"/>
+    </patternset>
+
+    <path id="javaant.module.sourcepath">
+        <dirset dir="${module.javaant.basedir}">
+            <include name="src"/>
+        </dirset>
+    </path>
+
+    <target name="compile"
+            depends="mycompile,compile.module.javaant.tests"
+            description="Compile module JavaAnt"/>
+
+    <!-- Компиляция кода -->
+    <target name="mycompile"
+            description="Compile module JavaAnt; production classes">
+        <mkdir dir="${javaant.output.dir}"/>
+        <javac destdir="${javaant.output.dir}"
+               debug="${compiler.debug}"
+               memorymaximumsize="${compiler.max.memory}"
+               fork="true"
+               verbose="all">
+            <!--executable="${module.jdk.bin.javaant}/javac"-->
+            <compilerarg line="${compiler.args.javaant}"/>
+            <classpath refid="javaant.module.production.classpath"/>
+            <src refid="javaant.module.sourcepath"/>
+            <patternset refid="excluded.from.compilation.javaant"/>
+        </javac>
+
+        <copy todir="${javaant.output.dir}">
+            <fileset dir="${module.javaant.basedir}/src">
+                <patternset refid="compiler.resources"/>
+                <type type="file"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <!-- Компиляция тестов -->
+    <target name="compile.module.javaant.tests" depends="mycompile"
+            description="compile module JavaAnt; test classes" unless="skip.tests"/>
+
+    <!-- Очищаем проект от всех собранных артефактов -->
+    <target name="clean" description="cleanup module">
+        <echo message="Delete all"/>
+        <delete dir="${javaant.output.dir}"/>
+        <delete dir="${javaant.testoutput.dir}"/>
+    </target>
+
+    <!-- Запуск приложения -->
+    <target name="run">
+        <echo message="Run application..."/>
+        <echo message="Это сообщение пойдёт в файл log.txt" output="log.txt"/>
+        <!-- Запускаем приложение -->
+        <java classpath="dist" classname="Main"/>
+    </target>
+
+    <target name="all" depends="clean, compile, run"
+            description="build all">
+        <echo message=" + steps to build all"/>
+    </target>
+
+    <property name="logFileName" value="log.txt"/>
+    <target name="t1">
+        <echo message="t1"/>
+        <echo message="Сообщение в файл ${logFileName}"
+              output="${logFileName}"/>
+    </target>
+
+    <target name="t2" depends="t1">
+        <echo message="t2 ${my1}"/>
+        <echo message="JDK_HOME: ${jdk.home.1.8}"/>
+    </target>
+    <!--
+       a.class: a.java
+    -->
+    <target name="all1" description="build all" depends="t2">
+        <echo message="${ant.file}"/>
+        <echo message=" + steps to build all1"/>
+    </target>    
+</project>

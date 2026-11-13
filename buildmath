@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Работа с условиями -->
+<project basedir="." name="javaant" default="main">
+    <!--<var name="op1" value="12"/>-->
+    <!--<var name="op2" value="6"/>-->
+    <!--<var name="op" value="+"/>-->
+
+    <!--&lt;!&ndash; demo plus &ndash;&gt;-->
+    <!--<math result="result" operand1="${op1}" operation="${op}" operand2="${op2}" datatype="int"/>-->
+    <!--<echo>${op1} ${op} ${op2} = ${result}</echo>-->
+    <!--<assert name="result" value="18"/>-->
+
+    <!--&lt;!&ndash; demo reusing result &ndash;&gt;-->
+    <!--<math result="result" operand1="${result}" operation="${op}" operand2="${op2}" datatype="int"/>-->
+    <!--<echo>${op1} ${op} ${op2} = ${result}</echo>-->
+    <!--<assert name="result" value="24"/>-->
+
+    <!--&lt;!&ndash; demo minus &ndash;&gt;-->
+    <!--<var name="op" value="-"/>-->
+    <!--<math result="result" operand1="${op1}" operation="${op}" operand2="${op2}" datatype="int"/>-->
+    <!--<echo>${op1} ${op} ${op2} = ${result}</echo>-->
+    <!--<assert name="result" value="6"/>-->
+
+    <!--&lt;!&ndash; demo multiply &ndash;&gt;-->
+    <!--<var name="op" value="*"/>-->
+    <!--<math result="result" operand1="${op1}" operation="${op}" operand2="${op2}" datatype="int"/>-->
+    <!--<echo>${op1} ${op} ${op2} = ${result}</echo>-->
+    <!--<assert name="result" value="72"/>-->
+
+    <!--&lt;!&ndash; demo divide &ndash;&gt;-->
+    <!--<var name="op" value="/"/>-->
+    <!--<math result="result" operand1="${op1}" operation="${op}" operand2="${op2}" datatype="int"/>-->
+    <!--<echo>${op1} ${op} ${op2} = ${result}</echo>-->
+    <!--<assert name="result" value="2"/>-->
+
+    <!--&lt;!&ndash; demo modulo &ndash;&gt;-->
+    <!--<var name="op" value="%"/>-->
+    <!--<math result="result" operand1="${op1}" operation="${op}" operand2="${op2}" datatype="int"/>-->
+    <!--<echo>${op1} ${op} ${op2} = ${result}</echo>-->
+    <!--<assert name="result" value="0"/>-->
+
+    <!--&lt;!&ndash; demo calculating the area of a circle &ndash;&gt;-->
+    <!--&lt;!&ndash; first, calculate the radius &ndash;&gt;-->
+    <!--<math result="radius">  &lt;!&ndash; defaults to double datatype &ndash;&gt;-->
+        <!--<op type="*">-->
+            <!--<num value="1"/>-->
+            <!--<num value="2"/>-->
+            <!--<num value="3"/>-->
+            <!--<num value="4"/>-->
+            <!--<num value="5"/>-->
+        <!--</op>-->
+    <!--</math>-->
+    <!--<echo>1 * 2 * 3 * 4 * 5 = ${radius}</echo>-->
+
+    <!--&lt;!&ndash; now calculate the area &ndash;&gt;-->
+    <!--<math result="area" precision="float">-->
+        <!--<op type="*">-->
+            <!--<num value="PI"/>-->
+            <!--<op type="pow">-->
+                <!--<num value="${radius}"/>-->
+                <!--<num value="2"/>-->
+            <!--</op>-->
+        <!--</op>-->
+    <!--</math>-->
+    <!--<echo>area = PI * radius ^ 2 = ${area}</echo>-->
+
+    <!--&lt;!&ndash; demo calculating a random number between 0 and 100 &ndash;&gt;-->
+    <!--<math result="result">-->
+        <!--<op op="rint">-->
+            <!--<op op="*">-->
+                <!--<num value="100"/>-->
+                <!--<op op="random"/>-->
+            <!--</op>-->
+        <!--</op>-->
+    <!--</math>-->
+    <!--<echo>a random number between 0 and 100: ${result}</echo>-->
+
+    <!--&lt;!&ndash; demo another multiplication &ndash;&gt;-->
+    <!--<math result="result" operation="multiply" operand1="17" operand2="13"/>-->
+    <!--<echo>${result}</echo>-->
+
+    <!--&lt;!&ndash; demo shorthand notation for calculating sin of an angle, which is degrees &ndash;&gt;-->
+    <!--<math result="sin">-->
+        <!--<sin>-->
+            <!--<radians arg1="${angle_in_degrees}"/>-->
+        <!--</sin>-->
+    <!--</math>-->
+    <!--<echo>${sin}</echo>-->
+
+    <target name="main" description="build all">
+        <echo message=""/>
+        <echo message="${ant.file}"/>
+        <echo message=" + steps to build all1"/>
+    </target>
+</project>
